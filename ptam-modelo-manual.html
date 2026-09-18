@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>PTAM — Parecer Técnico de Avaliação Mercadológica | F. Costa</title>
+<style>
+  :root{
+    --gold:#b8933f;
+    --gold-light:#d4af6a;
+    --ink:#1a1a1a;
+    --ink-soft:#3a3a3a;
+    --paper:#ffffff;
+    --paper-soft:#f7f5f1;
+    --line:#e3ddd0;
+    --band:#111111;
+    --accent-bg:#faf7f0;
+    --ok:#5c7a52;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#161514; --paper-soft:#1d1b18; --ink:#ece7dc; --ink-soft:#cfc8b8;
+      --line:#3a352c; --band:#000000; --accent-bg:#211d16;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#161514; --paper-soft:#1d1b18; --ink:#ece7dc; --ink-soft:#cfc8b8;
+    --line:#3a352c; --band:#000000; --accent-bg:#211d16;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper-soft); color:var(--ink);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height:1.55;
+  }
+  .toolbar{
+    position:sticky; top:0; z-index:50; background:var(--band); color:#f1ead9;
+    display:flex; gap:10px; align-items:center; padding:10px 18px;
+    font-family: Arial, Helvetica, sans-serif; font-size:12.5px; flex-wrap:wrap;
+  }
+  .toolbar b{color:var(--gold-light); font-weight:700; letter-spacing:.04em;}
+  .toolbar button{
+    background:transparent; border:1px solid var(--gold); color:#f1ead9;
+    padding:6px 12px; border-radius:4px; cursor:pointer; font-size:12px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .toolbar button:hover{background:var(--gold); color:#111;}
+  .toolbar .hint{opacity:.7; margin-left:auto;}
+  .doc{max-width:880px; margin:28px auto 80px; background:var(--paper);
+       box-shadow:0 2px 18px rgba(0,0,0,.12); overflow:hidden;}
+  .cover{
+    background:linear-gradient(160deg,#0c0c0c,#1c1c1c 55%,#0c0c0c);
+    color:#f1ead9; padding:60px 50px 50px; position:relative;
+  }
+  .cover:before{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
+    background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));}
+  .cover .logo-row{display:flex; align-items:center; gap:18px; margin-bottom:38px;}
+  .cover .logo-row img{width:78px; height:78px; border-radius:50%;}
+  .cover .logo-row .brandtext{font-family:Arial,Helvetica,sans-serif;}
+  .cover .logo-row .brandtext b{display:block; font-size:20px; letter-spacing:.08em; color:#fff;}
+  .cover .logo-row .brandtext span{display:block; font-size:11px; color:var(--gold-light); letter-spacing:.12em;}
+  .cover h1{font-size:34px; letter-spacing:.03em; margin:0 0 6px; color:#fff;}
+  .cover h2{font-size:15px; font-weight:400; color:var(--gold-light); margin:0 0 30px; letter-spacing:.04em;}
+  .cover .rule{width:70px; height:3px; background:var(--gold); margin:0 0 26px;}
+  .cover .objeto{font-family:Arial,Helvetica,sans-serif; font-size:13.5px; max-width:520px;}
+  .cover .objeto b{color:var(--gold-light);}
+  .cover .meta{margin-top:46px; font-family:Arial,Helvetica,sans-serif; font-size:11.5px; color:#c9c2b3; display:flex; gap:30px;}
+  .page{padding:38px 50px;}
+  .brandbar{display:flex; align-items:center; gap:10px; padding:14px 50px; border-bottom:2px solid var(--gold);
+    font-family:Arial,Helvetica,sans-serif;}
+  .brandbar img{width:34px; height:34px; border-radius:50%;}
+  .brandbar b{font-size:13px; letter-spacing:.06em;}
+  .brandbar span{font-size:10.5px; color:var(--ink-soft);}
+  h3.sec{
+    font-family:Arial,Helvetica,sans-serif; font-size:14px; letter-spacing:.05em;
+    color:#fff; background:var(--band); padding:9px 14px; margin:34px 0 14px;
+    border-left:5px solid var(--gold);
+  }
+  h4.sub{font-family:Arial,Helvetica,sans-serif; font-size:12.5px; letter-spacing:.03em;
+    color:var(--gold); text-transform:uppercase; margin:22px 0 8px; border-bottom:1px solid var(--line); padding-bottom:4px;}
+  p{margin:0 0 12px; font-size:13.5px; color:var(--ink-soft);}
+  .fill{
+    background:var(--accent-bg); border:1px dashed var(--gold); border-radius:3px;
+    padding:1px 6px; color:var(--ink); font-family:Arial,Helvetica,sans-serif; font-size:inherit;
+  }
+  .fill:focus{outline:2px solid var(--gold); background:#fff;}
+  table{width:100%; border-collapse:collapse; margin:10px 0 18px; font-family:Arial,Helvetica,sans-serif; font-size:12px;}
+  th{background:var(--band); color:#f1ead9; text-align:left; padding:8px 10px; font-weight:600;}
+  td{padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  tr:nth-child(even) td{background:var(--accent-bg);}
+  ul{margin:0 0 14px; padding-left:20px;}
+  ul li{font-size:13.5px; color:var(--ink-soft); margin-bottom:5px;}
+  .valuebox{
+    background:var(--band); color:#f1ead9; border-radius:6px; padding:18px 22px; margin:16px 0;
+    display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; font-family:Arial,Helvetica,sans-serif;
+  }
+  .valuebox .item{flex:1; min-width:160px;}
+  .valuebox .item small{display:block; color:var(--gold-light); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px;}
+  .valuebox .item .val{font-size:20px; font-weight:700; font-family:Georgia,serif;}
+  .note{
+    font-family:Arial,Helvetica,sans-serif; font-size:11px; color:var(--ink-soft);
+    background:var(--accent-bg); border-left:3px solid var(--gold); padding:9px 12px; margin:10px 0 18px;
+  }
+  .photogrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:12px 0 20px;}
+  .photobox{border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--accent-bg);}
+  .photobox .ph{aspect-ratio:4/3; background:repeating-linear-gradient(45deg,var(--line),var(--line) 10px,transparent 10px,transparent 20px); display:flex; align-items:center; justify-content:center; font-family:Arial,Helvetica,sans-serif; font-size:11px; color:var(--ink-soft); text-align:center; padding:10px;}
+  .photobox figcaption{padding:6px 10px; font-family:Arial,Helvetica,sans-serif; font-size:11.5px; border-top:1px solid var(--line);}
+  .siggrid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:34px;}
+  .sigbox{text-align:center; font-family:Arial,Helvetica,sans-serif; font-size:12px;}
+  .sigline{border-top:1px solid var(--ink); margin-top:46px; padding-top:6px;}
+  .footpage{
+    display:flex; justify-content:space-between; align-items:center; padding:14px 50px;
+    font-family:Arial,Helvetica,sans-serif; font-size:10.5px; color:var(--ink-soft); border-top:1px solid var(--line);
+  }
+  .footpage img{width:22px; height:22px; border-radius:50%; margin-right:6px; vertical-align:middle;}
+  .toc{list-style:none; padding:0; font-family:Arial,Helvetica,sans-serif; font-size:12.5px;}
+  .toc li{display:flex; justify-content:space-between; border-bottom:1px dotted var(--line); padding:6px 0;}
+  .qbox{background:var(--accent-bg); border:1px solid var(--line); border-radius:6px; padding:16px 18px; margin:14px 0;}
+  .qbox b{font-family:Arial,Helvetica,sans-serif; font-size:12px; color:var(--gold); display:block; margin-bottom:8px; letter-spacing:.03em;}
+  @media print{
+    .toolbar{display:none;}
+    body{background:#fff;}
+    .doc{box-shadow:none; margin:0; max-width:100%;}
+    .page{padding:20px 34px;}
+    h3.sec{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    .cover{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    .valuebox{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+  @media (max-width:700px){
+    .cover, .page{padding-left:22px; padding-right:22px;}
+    .brandbar, .footpage{padding-left:22px; padding-right:22px;}
+    .photogrid{grid-template-columns:1fr;}
+    .siggrid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <b>PTAM · F. COSTA</b>
+  <button onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+  <button onclick="toggleEdit()">✏️ <span id="editLabel">Ativar edição</span></button>
+  <button onclick="toggleTheme()">🌓 Tema</button>
+  <span class="hint">Clique nos campos destacados (tracejado dourado) para editar. Duplique este arquivo para cada novo imóvel.</span>
+</div>
+
+<div class="doc" id="doc">
+
+  <!-- CAPA -->
+  <section class="cover">
+    <div class="logo-row">
+      <img src="data:image/png;base64,__LOGO__" alt="FCOSTA">
+      <div class="brandtext">
+        <b>F. COSTA</b>
+        <span>CORRETOR E AVALIADOR DE IMÓVEIS</span>
+      </div>
+    </div>
+    <h1>PARECER TÉCNICO DE<br>AVALIAÇÃO MERCADOLÓGICA</h1>
+    <h2>PTAM — conforme ABNT NBR 16747 e Resolução COFECI nº 1.066/2007</h2>
+    <div class="rule"></div>
+    <div class="objeto">
+      <b>Objeto da avaliação:</b> <span class="fill" contenteditable="true">Imóvel situado na [Rua/Av., nº] - [Bairro], [Cidade] - [UF], [CEP]</span>
+    </div>
+    <div class="meta">
+      <div><b style="color:#fff">Data de referência:</b> <span class="fill" contenteditable="true">[mês/ano]</span></div>
+      <div><b style="color:#fff">CRECI-SP:</b> 294791-F</div>
+      <div><b style="color:#fff">CNAI:</b> 52708</div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <div class="brandbar">
+    <img src="data:image/png;base64,__LOGO__" alt="">
+    <div><b>F. COSTA</b> <span>— Corretor e Avaliador de Imóveis</span></div>
+  </div>
+  <div class="page">
+    <h3 class="sec">SUMÁRIO</h3>
+    <ol class="toc">
+      <li><span>1. Identificação do Solicitante</span><span>3</span></li>
+      <li><span>2. Objetivo do Parecer</span><span>3</span></li>
+      <li><span>3. Finalidade</span><span>3</span></li>
+      <li><span>4. Identificação e Caracterização do Imóvel</span><span>3</span></li>
+      <li><span>&nbsp;&nbsp;4.1 Caracterização da Macrorregião</span><span>4</span></li>
+      <li><span>&nbsp;&nbsp;4.2 Caracterização da Região / Bairro</span><span>5</span></li>
+      <li><span>&nbsp;&nbsp;4.3 Caracterização do Terreno</span><span>6</span></li>
+      <li><span>&nbsp;&nbsp;4.4 Caracterização da Edificação</span><span>7</span></li>
+      <li><span>5. Documentação Analisada</span><span>8</span></li>
+      <li><span>6. Vistoria</span><span>8</span></li>
+      <li><span>7. Diagnóstico de Mercado</span><span>9</span></li>
+      <li><span>8. Metodologia e Tratamento dos Dados</span><span>10</span></li>
+      <li><span>9. Pesquisa de Mercado — Dados Comparativos</span><span>11</span></li>
+      <li><span>10. Pressupostos, Ressalvas e Fatores Limitantes</span><span>12</span></li>
+      <li><span>11. Resultado da Avaliação</span><span>13</span></li>
+      <li><span>12. Encerramento</span><span>14</span></li>
+      <li><span>13. Anexos</span><span>15</span></li>
+    </ol>
+
+    <h3 class="sec">1. IDENTIFICAÇÃO DO SOLICITANTE</h3>
+    <p>O presente Parecer Técnico de Avaliação Mercadológica foi solicitado por
+      <span class="fill" contenteditable="true">[nome do solicitante / cliente]</span>,
+      <span class="fill" contenteditable="true">[CPF/CNPJ]</span>,
+      com o objetivo descrito no item 2 abaixo.</p>
+
+    <h3 class="sec">2. OBJETIVO DO PARECER</h3>
+    <p>O objetivo do presente trabalho é
+      <span class="fill" contenteditable="true">determinar o valor de mercado para fins de [compra e venda / locação / garantia / partilha]</span>
+      do imóvel objeto deste parecer.</p>
+
+    <h3 class="sec">3. FINALIDADE</h3>
+    <p><span class="fill" contenteditable="true">Subsidiar a tomada de decisão do solicitante quanto à comercialização/locação do imóvel, servindo como referência de valor justo de mercado.</span></p>
+
+    <h3 class="sec">4. IDENTIFICAÇÃO E CARACTERIZAÇÃO DO IMÓVEL AVALIANDO</h3>
+    <p>O imóvel está situado em <span class="fill" contenteditable="true">[endereço completo]</span>.
+      Matrícula/Cadastro: <span class="fill" contenteditable="true">[nº matrícula ou IPTU]</span>.
+      Coordenadas geográficas: Latitude <span class="fill" contenteditable="true">[-xx,xxxxxx]</span>,
+      Longitude <span class="fill" contenteditable="true">[-xx,xxxxxx]</span>.</p>
+
+    <div class="qbox">
+      <b>⚙️ Como preencher esta seção com dados reais da região</b>
+      <p style="margin:0">Este arquivo é estático e não busca dados sozinho. Para uma caracterização de macrorregião, região, mobilidade e equipamentos urbanos <b>com nível igual ou superior ao laudo de referência</b>, me envie o endereço do imóvel numa conversa — eu pesquiso (mapas, comércio do entorno, vias de acesso, transporte) e devolvo o texto pronto para colar aqui. Isso evita number/endereço inventado, que é o maior risco de credibilidade num parecer técnico.</p>
+    </div>
+  </div>
+
+  <div class="footpage">
+    <div><img src="data:image/png;base64,__LOGO__">F. Costa — Corretor e Avaliador de Imóveis</div>
+    <div>CRECI-SP 294791-F · CNAI 52708</div>
+  </div>
+
+  <!-- PÁGINA MACRORREGIÃO -->
+  <div class="brandbar"><img src="data:image/png;base64,__LOGO__"><div><b>F. COSTA</b> <span>— Corretor e Avaliador de Imóveis</span></div></div>
+  <div class="page">
+    <h4 class="sub">4.1 Caracterização da Macrorregião</h4>
+    <div class="note">Figura 1 — Mapa da macrorregião (inserir print de mapa/GeoSampa/Google Earth aqui)</div>
+    <p><span class="fill" contenteditable="true">[Descrever a zona da cidade onde o imóvel está inserido: adensamento urbano, topografia, infraestrutura consolidada, principais eixos viários de acesso, oferta de transporte público.]</span></p>
+    <ul>
+      <li><b>Adensamento urbano:</b> <span class="fill" contenteditable="true">[preencher]</span></li>
+      <li><b>Topografia:</b> <span class="fill" contenteditable="true">[preencher]</span></li>
+      <li><b>Infraestrutura:</b> <span class="fill" contenteditable="true">[água, esgoto, energia, iluminação, pavimentação, coleta de lixo]</span></li>
+      <li><b>Mobilidade e acessibilidade:</b> <span class="fill" contenteditable="true">[principais vias, ônibus, metrô, trem]</span></li>
+    </ul>
+
+    <h4 class="sub">4.2 Caracterização da Região / Bairro</h4>
+    <p><span class="fill" contenteditable="true">[Tipologia construtiva predominante, uso do solo, padrão socioeconômico, equipamentos urbanos e comércio de bairro relevantes.]</span></p>
+
+    <h4 class="sub">4.3 Caracterização do Terreno</h4>
+    <table>
+      <tr><th>Item</th><th>Descrição</th></tr>
+      <tr><td>Endereço</td><td class="fill" contenteditable="true">[preencher]</td></tr>
+      <tr><td>Área do terreno</td><td class="fill" contenteditable="true">[xxx] m² (conforme IPTU/matrícula)</td></tr>
+      <tr><td>Formato / topografia</td><td class="fill" contenteditable="true">[retangular / irregular — plano / aclive / declive]</td></tr>
+      <tr><td>Nº de frentes</td><td class="fill" contenteditable="true">[1]</td></tr>
+      <tr><td>Posição na quadra</td><td class="fill" contenteditable="true">[meio de quadra / esquina]</td></tr>
+    </table>
+
+    <h4 class="sub">4.4 Caracterização da Edificação</h4>
+    <div class="photogrid">
+      <figure class="photobox"><div class="ph">Foto da fachada<br>(inserir imagem)</div><figcaption>Figura — Fachada do imóvel</figcaption></figure>
+      <figure class="photobox"><div class="ph">Foto do entorno / rua<br>(inserir imagem)</div><figcaption>Figura — Rua de acesso</figcaption></figure>
+    </div>
+    <p><span class="fill" contenteditable="true">[Descrever nº de pavimentos, cômodos por pavimento, padrão construtivo (baixo/médio/alto), acabamentos, estado de conservação, idade aparente e real, adequação ao uso.]</span></p>
+    <table>
+      <tr><th>Item</th><th>Descrição</th></tr>
+      <tr><td>Área construída</td><td class="fill" contenteditable="true">[xxx] m² (conforme IPTU/planta)</td></tr>
+      <tr><td>Padrão construtivo (VEIU/IBAPE)</td><td class="fill" contenteditable="true">[baixo / médio / alto]</td></tr>
+      <tr><td>Estado de conservação</td><td class="fill" contenteditable="true">[regular / bom / excelente]</td></tr>
+      <tr><td>Uso atual</td><td class="fill" contenteditable="true">[residencial / comercial / institucional]</td></tr>
+    </table>
+  </div>
+
+  <div class="footpage"><div><img src="data:image/png;base64,__LOGO__">F. Costa — Corretor e Avaliador de Imóveis</div><div>CRECI-SP 294791-F · CNAI 52708</div></div>
+
+  <!-- DOCUMENTAÇÃO / VISTORIA -->
+  <div class="brandbar"><img src="data:image/png;base64,__LOGO__"><div><b>F. COSTA</b> <span>— Corretor e Avaliador de Imóveis</span></div></div>
+  <div class="page">
+    <h3 class="sec">5. DOCUMENTAÇÃO ANALISADA</h3>
+    <ul>
+      <li>Matrícula do imóvel nº <span class="fill" contenteditable="true">[nº]</span>, <span class="fill" contenteditable="true">[cartório]</span></li>
+      <li>Guia/Comprovante de IPTU — cadastro nº <span class="fill" contenteditable="true">[nº]</span></li>
+      <li><span class="fill" contenteditable="true">[Plantas, habite-se, contrato de locação vigente, outros documentos fornecidos]</span></li>
+    </ul>
+
+    <h3 class="sec">6. VISTORIA</h3>
+    <p>Vistoria realizada em <span class="fill" contenteditable="true">[data]</span> por
+      <span class="fill" contenteditable="true">F. Costa — Corretor e Avaliador de Imóveis (CNAI 52708)</span>.
+      O imóvel encontra-se <span class="fill" contenteditable="true">[ocupado / desocupado]</span>.</p>
+
+    <h3 class="sec">7. DIAGNÓSTICO DE MERCADO</h3>
+    <p><span class="fill" contenteditable="true">[Perfil socioeconômico da região, dinâmica de oferta e procura para o tipo de imóvel avaliado, liquidez observada, comparação com regiões vizinhas.]</span></p>
+    <ul>
+      <li><b>Desempenho do mercado:</b> <span class="fill" contenteditable="true">[aquecido / normal / retraído]</span></li>
+      <li><b>Número de ofertas comparáveis coletadas:</b> <span class="fill" contenteditable="true">[nº]</span></li>
+      <li><b>Liquidez estimada:</b> <span class="fill" contenteditable="true">[alta / média / baixa]</span></li>
+    </ul>
+
+    <h3 class="sec">8. METODOLOGIA E TRATAMENTO DOS DADOS</h3>
+    <p>Empregou-se o <b>Método Comparativo Direto de Dados de Mercado</b>, com tratamento por
+      <span class="fill" contenteditable="true">[fatores de homogeneização / inferência estatística]</span>,
+      em conformidade com a <b>ABNT NBR 16747:2020</b> (Parecer Técnico de Avaliação Mercadológica) e, no que couber, com os
+      princípios da <b>ABNT NBR 14.653-1/2</b>. A amostra foi composta por imóveis com características intrínsecas e
+      extrínsecas comparáveis ao avaliando, localizados no mesmo bairro ou em bairros de perfil equivalente.</p>
+    <div class="note">Nota de honestidade técnica: confirme a redação normativa exata (NBR 16747) e a Resolução COFECI aplicável antes de assinar — não tenho acesso a busca neste momento para validar o número/ano da norma com 100% de certeza.</div>
+
+    <h3 class="sec">9. PESQUISA DE MERCADO — DADOS COMPARATIVOS</h3>
+    <table>
+      <tr><th>Amostra</th><th>Endereço</th><th>Área (m²)</th><th>Valor ofertado</th><th>Fator de oferta (-10%)</th><th>Fonte</th></tr>
+      <tr><td>01</td><td class="fill" contenteditable="true">[endereço]</td><td class="fill" contenteditable="true">[xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">[link/anúncio]</td></tr>
+      <tr><td>02</td><td class="fill" contenteditable="true">[endereço]</td><td class="fill" contenteditable="true">[xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">[link/anúncio]</td></tr>
+      <tr><td>03</td><td class="fill" contenteditable="true">[endereço]</td><td class="fill" contenteditable="true">[xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">[link/anúncio]</td></tr>
+      <tr><td>04</td><td class="fill" contenteditable="true">[endereço]</td><td class="fill" contenteditable="true">[xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">[link/anúncio]</td></tr>
+      <tr><td>05</td><td class="fill" contenteditable="true">[endereço]</td><td class="fill" contenteditable="true">[xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">[link/anúncio]</td></tr>
+      <tr><td>06</td><td class="fill" contenteditable="true">[endereço]</td><td class="fill" contenteditable="true">[xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">R$ [xx]</td><td class="fill" contenteditable="true">[link/anúncio]</td></tr>
+    </table>
+    <p style="font-size:11.5px">Recomenda-se, sempre que possível, distância mínima de 6(k+1) dados coletados por variável utilizada, conforme parâmetro de fundamentação da NBR 14.653-2, mesmo em PTAM — reforça a credibilidade técnica do parecer.</p>
+  </div>
+
+  <div class="footpage"><div><img src="data:image/png;base64,__LOGO__">F. Costa — Corretor e Avaliador de Imóveis</div><div>CRECI-SP 294791-F · CNAI 52708</div></div>
+
+  <!-- RESSALVAS / RESULTADO -->
+  <div class="brandbar"><img src="data:image/png;base64,__LOGO__"><div><b>F. COSTA</b> <span>— Corretor e Avaliador de Imóveis</span></div></div>
+  <div class="page">
+    <h3 class="sec">10. PRESSUPOSTOS, RESSALVAS E FATORES LIMITANTES</h3>
+    <ul>
+      <li>Áreas de terreno e edificação adotadas com base em <span class="fill" contenteditable="true">[IPTU/matrícula/medição in loco]</span>.</li>
+      <li>O profissional declara não possuir vínculo ou interesse direto no imóvel objeto deste parecer.</li>
+      <li>Os honorários não estão vinculados ao valor estimado, preservando a imparcialidade do trabalho.</li>
+      <li>Este parecer é um PTAM — Parecer Técnico de Avaliação Mercadológica, emitido por Corretor de Imóveis
+        habilitado junto ao CNAI (Cadastro Nacional dos Avaliadores Imobiliários), distinto de Laudo de Avaliação de
+        Engenharia (privativo de profissionais registrados no CREA).</li>
+    </ul>
+
+    <h3 class="sec">11. RESULTADO DA AVALIAÇÃO</h3>
+    <p>Com base na pesquisa de mercado, no tratamento dos dados e na metodologia descrita, o imóvel avaliando foi
+      estimado em:</p>
+    <div class="valuebox">
+      <div class="item"><small>Valor total estimado</small><div class="val fill" contenteditable="true">R$ [xx.xxx,xx]</div></div>
+      <div class="item"><small>Valor unitário (m²)</small><div class="val fill" contenteditable="true">R$ [xx,xx] / m²</div></div>
+      <div class="item"><small>Intervalo de mercado</small><div class="val fill" contenteditable="true">R$ [mín] — R$ [máx]</div></div>
+    </div>
+    <p style="font-size:11.5px">Por extenso: <span class="fill" contenteditable="true">[valor por extenso]</span></p>
+    <p>O valor representa a melhor estimativa técnica de mercado na data de referência, não constituindo garantia de
+      negociação por esse valor exato, podendo o preço final de mercado variar conforme condições de negociação
+      entre as partes.</p>
+
+    <h3 class="sec">12. ENCERRAMENTO</h3>
+    <p><span class="fill" contenteditable="true">[Cidade], [dia] de [mês] de [ano].</span></p>
+    <div class="siggrid">
+      <div class="sigbox">
+        <div class="sigline">F. COSTA<br>Corretor e Avaliador de Imóveis<br>CRECI-SP 294791-F · CNAI 52708</div>
+      </div>
+      <div class="sigbox">
+        <div class="sigline"><span class="fill" contenteditable="true">[nome do solicitante]</span><br>Solicitante / Ciente</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footpage"><div><img src="data:image/png;base64,__LOGO__">F. Costa — Corretor e Avaliador de Imóveis</div><div>CRECI-SP 294791-F · CNAI 52708</div></div>
+
+  <!-- ANEXOS -->
+  <div class="brandbar"><img src="data:image/png;base64,__LOGO__"><div><b>F. COSTA</b> <span>— Corretor e Avaliador de Imóveis</span></div></div>
+  <div class="page">
+    <h3 class="sec">13. ANEXOS</h3>
+    <ul>
+      <li>Anexo I — Relatório fotográfico do imóvel avaliando</li>
+      <li>Anexo II — Dados comparativos de mercado (prints de anúncios/fontes)</li>
+      <li>Anexo III — Documentação disponibilizada (matrícula, IPTU, plantas)</li>
+      <li>Anexo IV — Carteira CRECI / Certificado CNAI</li>
+    </ul>
+    <h4 class="sub">Anexo I — Relatório Fotográfico</h4>
+    <div class="photogrid">
+      <figure class="photobox"><div class="ph">Foto 01</div><figcaption class="fill" contenteditable="true">Fachada</figcaption></figure>
+      <figure class="photobox"><div class="ph">Foto 02</div><figcaption class="fill" contenteditable="true">Sala / ambiente principal</figcaption></figure>
+      <figure class="photobox"><div class="ph">Foto 03</div><figcaption class="fill" contenteditable="true">Cozinha / área de serviço</figcaption></figure>
+      <figure class="photobox"><div class="ph">Foto 04</div><figcaption class="fill" contenteditable="true">Área externa / garagem</figcaption></figure>
+    </div>
+    <p style="font-size:11px">Para inserir fotos reais: no modo de edição, clique com o botão direito sobre um bloco tracejado e cole a imagem, ou substitua o HTML da tag <code>&lt;figure&gt;</code> por uma tag <code>&lt;img&gt;</code> com o arquivo.</p>
+  </div>
+
+  <div class="footpage"><div><img src="data:image/png;base64,__LOGO__">F. Costa — Corretor e Avaliador de Imóveis</div><div>CRECI-SP 294791-F · CNAI 52708</div></div>
+
+</div>
+
+<script>
+  let editing = false;
+  function toggleEdit(){
+    editing = !editing;
+    document.getElementById('editLabel').textContent = editing ? 'Modo edição ATIVO' : 'Ativar edição';
+    document.querySelectorAll('.fill').forEach(el=>{
+      el.style.outline = editing ? '1px solid var(--gold)' : 'none';
+    });
+  }
+  function toggleTheme(){
+    const html = document.documentElement;
+    const cur = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  }
+</script>
+</body>
+</html>

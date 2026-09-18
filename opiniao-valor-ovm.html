@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opinião de Valor Mercadológico — FCosta Corretor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#3B9BD6;--sky-l:#6cb8e6;--sky-ll:#e4f2fc;--dark:#1E3A5F;--white:#fff;--off:#f4f7fb;--border:#d0dfed;--text:#1a2b3c;--muted:#5a7080;--gold:#c8a84b;--gold-l:#f5e6c0;--ok:#27ae60;--ok-l:#e8f8ef;--warn:#e67e22;--warn-l:#fff4e0;--err:#c0392b;--err-l:#fdeaea;--r:10px;--sh:0 4px 20px rgba(30,58,95,.10)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;background:var(--off);color:var(--text);font-size:14px;padding-bottom:60px}
+
+#topbar{background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;height:54px;position:sticky;top:0;z-index:200;box-shadow:0 2px 14px rgba(0,0,0,.3);flex-wrap:wrap}
+#topbar .brand{display:flex;align-items:center;gap:10px}
+#topbar .bname{font-family:"Playfair Display",serif;font-size:1.05rem}
+#topbar .bsub{font-size:.58rem;color:var(--sky-l);font-family:"DM Mono",monospace;display:block}
+#logo-top{height:36px;max-width:150px;object-fit:contain;display:none;background:#fff;border-radius:4px;padding:3px}
+#logo-top.on{display:block}
+#logo-btn{background:transparent;border:1px dashed rgba(255,255,255,.45);color:#fff;font-size:.62rem;padding:4px 8px;border-radius:4px;cursor:pointer;font-family:inherit}
+.acts{display:flex;gap:6px;flex-wrap:wrap}
+.bt{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);padding:6px 11px;border-radius:6px;cursor:pointer;font-size:.72rem;font-family:inherit;font-weight:500}
+.bt:hover{background:rgba(255,255,255,.22)}
+.bt.pri{background:var(--sky);border-color:var(--sky)}
+
+.wrap{max-width:920px;margin:0 auto;padding:22px 16px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);padding:20px;margin-bottom:18px}
+.shd{border-bottom:2px solid var(--sky-ll);padding-bottom:10px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.stit{font-family:"Playfair Display",serif;font-size:1.15rem;color:var(--dark)}
+.ssub{font-size:.74rem;color:var(--muted);margin-top:2px}
+.badge{background:var(--gold-l);color:#7a6520;font-size:.6rem;font-weight:700;padding:4px 9px;border-radius:20px;font-family:"DM Mono",monospace}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.f label{display:block;font-size:.7rem;font-weight:600;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.03em}
+.f input,.f select,.f textarea{width:100%;padding:9px 10px;border:1px solid var(--border);border-radius:7px;font-family:inherit;font-size:.86rem;background:var(--white);color:var(--text)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px var(--sky-ll)}
+.f textarea{min-height:80px;resize:vertical}
+.f .hint{font-size:.66rem;color:var(--muted);margin-top:3px}
+.f.wide{grid-column:1/-1}
+.alert{display:flex;gap:9px;padding:11px 13px;border-radius:8px;font-size:.78rem;line-height:1.5;margin-bottom:14px}
+.alert.info{background:var(--sky-ll);color:#17506f}
+
+.fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:10px}
+.fitem{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:#fff}
+.fitem img{width:100%;height:80px;object-fit:cover;display:block}
+.fitem button{width:100%;border:none;background:var(--err-l);color:var(--err);font-size:.62rem;padding:3px;cursor:pointer;font-family:inherit}
+.upl{display:block;padding:9px;border:1px dashed var(--border);border-radius:7px;text-align:center;font-size:.72rem;color:var(--muted);cursor:pointer;margin-top:10px;font-weight:600}
+.upl input{display:none}
+
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:6px}
+.rbox{background:var(--off);border:1px solid var(--border);border-radius:9px;padding:13px}
+.rbox .k{font-size:.64rem;text-transform:uppercase;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.rbox .v{font-family:"DM Mono",monospace;font-size:1.02rem;color:var(--dark);margin-top:5px;font-weight:500}
+.rbox.hero{background:linear-gradient(135deg,var(--dark),#2d5480);border-color:var(--dark);grid-column:1/-1}
+.rbox.hero .k{color:var(--sky-l)}
+.rbox.hero .v{color:#fff;font-size:1.7rem;font-family:"Playfair Display",serif}
+.rbox.hero .sub{color:#cfe3f3;font-size:.72rem;margin-top:4px}
+
+.doc{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:34px 38px;line-height:1.62;font-size:.86rem}
+.doc-logo{display:block;margin:0 auto 14px;max-height:78px;max-width:240px;object-fit:contain}
+.doc h1{font-family:"Playfair Display",serif;font-size:1.3rem;text-align:center;color:var(--dark);letter-spacing:.02em}
+.doc .sub{text-align:center;font-size:.72rem;color:var(--muted);font-family:"DM Mono",monospace;margin-top:5px}
+.doc hr{border:none;border-top:2px solid var(--dark);margin:14px 0 18px}
+.doc h3{font-family:"Playfair Display",serif;font-size:.98rem;color:var(--dark);margin:18px 0 8px;border-bottom:1px solid var(--border);padding-bottom:4px}
+.doc .dr{display:flex;gap:8px;padding:3px 0;border-bottom:1px dotted #e6edf4}
+.doc .dk{min-width:200px;font-weight:600;color:var(--muted);font-size:.78rem}
+.doc .valorbox{background:var(--sky-ll);border:1px solid var(--sky);border-radius:8px;padding:16px;text-align:center;margin:16px 0}
+.doc .valorbox .vb{font-family:"Playfair Display",serif;font-size:1.55rem;color:var(--dark);font-weight:700}
+.doc .valorbox .vs{font-size:.76rem;color:#17506f;margin-top:4px}
+.doc .legal{background:var(--warn-l);border-left:3px solid var(--warn);padding:11px 13px;font-size:.74rem;color:#7a4405;border-radius:0 6px 6px 0;margin-top:16px;line-height:1.55}
+.doc .assin{margin-top:36px;text-align:center;font-size:.8rem}
+.doc .assin .ln{border-top:1px solid var(--text);width:290px;margin:46px auto 6px}
+.doc .rodape{margin-top:26px;border-top:1px solid var(--border);padding-top:9px;font-size:.66rem;color:var(--muted);text-align:center;font-family:"DM Mono",monospace}
+.docfotos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.docfotos img{width:100%;height:110px;object-fit:cover;border:1px solid var(--border);border-radius:5px}
+
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--dark);color:#fff;padding:11px 18px;border-radius:8px;font-size:.8rem;transition:.3s;z-index:999}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+@media print{
+  #topbar,.noprint,#toast{display:none!important}
+  body{background:#fff;padding:0}
+  .wrap{max-width:100%;padding:0}
+  .doc{border:none;border-radius:0;padding:0;font-size:11pt}
+  .doc-logo{display:block!important}
+  .docfotos img{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="brand">
+    <img id="logo-top" alt="Logo FCosta">
+    <div><span class="bname">Opinião de Valor</span><small class="bsub">FCosta · CRECI-SP 294791-F · CNAI 52708</small></div>
+    <button id="logo-btn" onclick="document.getElementById('logo-input').click()" title="A logo fica salva neste navegador e entra em todos os documentos FCosta">🖼 Logo</button>
+    <input type="file" id="logo-input" accept="image/*" style="display:none" onchange="carregarLogo(event)">
+  </div>
+  <div class="acts">
+    <button class="bt" onclick="novo()">🗑 Novo</button>
+    <button class="bt" onclick="copiarWhats()">💬 Copiar p/ WhatsApp</button>
+    <button class="bt pri" onclick="imprimir()">📄 Gerar PDF</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="card noprint">
+    <div class="alert info"><span>ℹ️</span><span><strong>Este documento não é um PTAM.</strong> É uma Opinião de Valor Mercadológico (OVM) — estudo de mercado emitido no exercício da atribuição do corretor com CRECI ativo de opinar sobre a comercialização de imóveis (Lei 6.530/78, art. 3º). Serve para venda, locação, permuta, referência patrimonial e consulta do proprietário. Não serve para financiamento bancário, garantia, inventário, partilha, processo judicial ou fins tributários — nesses casos emita o PTAM completo (NBR 14653 + CNAI).</span></div>
+  </div>
+
+  <!-- DADOS -->
+  <div class="card noprint">
+    <div class="shd"><div><div class="stit">Imóvel e valor do m² da região</div><div class="ssub">Preenchimento rápido — dados do imóvel e o valor de referência do metro quadrado na região</div></div><span class="badge">DADOS</span></div>
+    <div class="grid">
+      <div class="f"><label>Nº da OVM</label><input type="text" id="num" placeholder="OVM-2026-001"></div>
+      <div class="f"><label>Data</label><input type="date" id="data"></div>
+      <div class="f"><label>Finalidade da opinião</label>
+        <select id="finalidade" onchange="aplicarModo()">
+          <option value="venda" selected>Definição de preço para venda</option>
+          <option value="locacao">Definição de valor de locação</option>
+          <option value="permuta">Permuta entre particulares</option>
+          <option value="patrimonio">Atualização de valor patrimonial (uso interno do proprietário)</option>
+          <option value="referencia">Referência de mercado / consulta do proprietário</option>
+        </select>
+        <div class="hint" id="hintFinalidade"></div>
+      </div>
+      <div class="f"><label>Solicitante / proprietário</label><input type="text" id="cliente" placeholder="Nome completo"></div>
+      <div class="f"><label>Contato do solicitante</label><input type="text" id="cliente_tel" placeholder="(11) 90000-0000"></div>
+      <div class="f wide"><label>Endereço do imóvel</label><input type="text" id="endereco" placeholder="Rua, nº, complemento — bairro, cidade/UF"></div>
+      <div class="f"><label>Tipo do imóvel</label>
+        <select id="tipo">
+          <option>Apartamento</option><option>Casa</option><option>Sobrado</option>
+          <option>Terreno</option><option>Sala comercial</option><option>Galpão</option><option>Chácara / rural</option>
+        </select>
+      </div>
+      <div class="f"><label>Área privativa / útil (m²)</label><input type="number" id="area" min="0" step="0.01" placeholder="0"></div>
+      <div class="f"><label>Área total / terreno (m²)</label><input type="number" id="area_total" min="0" step="0.01" placeholder="opcional"></div>
+      <div class="f"><label>Dormitórios</label><input type="number" id="dorm" min="0" step="1"></div>
+      <div class="f"><label>Vagas</label><input type="number" id="vagas" min="0" step="1"></div>
+      <div class="f"><label>Estado de conservação</label>
+        <select id="conserv">
+          <option>Novo / recém-reformado</option><option selected>Bom — uso regular</option>
+          <option>Regular — requer manutenção</option><option>Ruim — requer reforma ampla</option>
+        </select>
+      </div>
+      <div class="f"><label>Condomínio (R$/mês)</label><input type="number" id="condominio" min="0" step="0.01" placeholder="opcional"></div>
+      <div class="f"><label>IPTU (R$/ano)</label><input type="number" id="iptu" min="0" step="0.01" placeholder="opcional"></div>
+      <div class="f"><label>Situação documental</label>
+        <select id="docsit">
+          <option>Matrícula regular, sem pendências</option>
+          <option>Financiado — saldo devedor a quitar</option>
+          <option>Inventário / espólio em andamento</option>
+          <option>Averbação de construção pendente</option>
+          <option>A verificar</option>
+        </select>
+      </div>
+      <div class="f wide"><label>Pontos fortes e fracos observados</label><textarea id="obs" placeholder="Ex.: andar alto, sol da manhã, reformado em 2023; prédio sem elevador; rua sem saída..."></textarea></div>
+    </div>
+    <label class="upl">📷 fotos do imóvel (entram no documento)
+      <input type="file" accept="image/*" multiple onchange="addFotoImovel(event)">
+    </label>
+    <div class="fotos" id="fotosImovel"></div>
+  </div>
+
+  <!-- VALOR DO M² -->
+  <div class="card noprint">
+    <div class="shd"><div><div class="stit">Valor do m² da região</div><div class="ssub" id="hintM2">Informe o valor de referência praticado na região</div></div><span class="badge">M² REGIÃO</span></div>
+    <div class="grid">
+      <div class="f"><label id="lblUnit">Valor do m² na região (R$)</label><input type="number" id="unitRegiao" min="0" step="0.01" placeholder="0" oninput="calc()"></div>
+      <div class="f"><label>Fonte da referência</label><input type="text" id="fonteM2" placeholder="Ex.: FipeZap, CRECI-SP, pesquisa direta, Zap Imóveis"></div>
+      <div class="f"><label>Fator de negociação (%)</label><input type="number" id="fatorOferta" value="8" min="0" max="30" step="0.5" oninput="calc()"><div class="hint" id="hintFator"></div></div>
+      <div class="f"><label id="lblPrazo">Prazo estimado de venda</label>
+        <select id="prazo">
+          <option>15 a 30 dias</option><option>30 a 60 dias</option><option selected>60 a 120 dias</option>
+          <option>120 a 180 dias</option><option>acima de 180 dias</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="card noprint">
+    <div class="shd"><div><div class="stit">Faixa de valor apurada</div><div class="ssub">Calculada a partir da área do imóvel × valor do m² da região</div></div><span class="badge">RESULTADO</span></div>
+    <div class="res">
+      <div class="rbox hero"><div class="k" id="kAnuncio">Valor sugerido de anúncio</div><div class="v" id="rAnuncio">—</div><div class="sub" id="rAnuncioSub">preencha área e valor do m²</div></div>
+      <div class="rbox"><div class="k" id="kUnit">R$/m² adotado</div><div class="v" id="rUnit">—</div></div>
+      <div class="rbox"><div class="k" id="kFecha">Valor provável de fechamento</div><div class="v" id="rFecha">—</div></div>
+      <div class="rbox"><div class="k" id="kPiso">Piso de negociação</div><div class="v" id="rPiso">—</div></div>
+    </div>
+  </div>
+
+  <!-- DOCUMENTO -->
+  <div class="doc" id="doc"></div>
+
+  <div class="card noprint" style="text-align:center">
+    <button class="bt pri" style="background:var(--sky)" onclick="imprimir()">📄 Gerar PDF / imprimir</button>
+    <button class="bt" style="background:var(--off);color:var(--text);border-color:var(--border)" onclick="copiarWhats()">💬 Copiar resumo para WhatsApp</button>
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script>
+const LOGO_KEY='fcosta_logo_v1', KEY='fcosta_ovm_v2';
+const PROF={nome:'Sérgio Fernandes da Costa',creci:'CRECI-SP 294791-F',cnai:'CNAI 52708',tel:'(11) 99350-9109',site:'fcostacorretor.com'};
+
+function $(id){return document.getElementById(id);}
+function v(id){const e=$(id);return e?e.value.trim():'';}
+function brl(n){return (isFinite(n)&&n>0)?n.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}):'—';}
+function brl2(n){return (isFinite(n)&&n>0)?n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}):'—';}
+function fmtBR(d){if(!d)return'—';const[a,m,x]=d.split('-');return `${x}/${m}/${a}`;}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
+
+/* ── LOGO compartilhada com o PTAM Pro e demais documentos FCosta ── */
+function getLogo(){try{return localStorage.getItem(LOGO_KEY)||'';}catch(e){return '';}}
+function logoTag(){const l=getLogo();return l?`<img class="doc-logo" src="${l}" alt="FCosta">`:'';}
+function aplicarLogo(){const l=getLogo(),el=$('logo-top');if(!el)return;
+  if(l){el.src=l;el.classList.add('on');$('logo-btn').textContent='🖼 Trocar';}
+  else{el.classList.remove('on');$('logo-btn').textContent='🖼 Logo';}}
+function carregarLogo(ev){const f=ev.target.files&&ev.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{try{localStorage.setItem(LOGO_KEY,e.target.result);}catch(err){toast('⚠️ Logo grande demais. Use um PNG abaixo de 300 KB.');return;}
+    aplicarLogo();calc();toast('✅ Logo aplicada em todos os documentos deste navegador.');};
+  r.readAsDataURL(f);ev.target.value='';}
+
+/* ── FOTOS DO IMÓVEL ── */
+function addFotoImovel(ev){render(ev.target.files,$('fotosImovel'));ev.target.value='';}
+function render(files,grid){
+  Array.from(files||[]).forEach(f=>{
+    const r=new FileReader();
+    r.onload=e=>{
+      const d=document.createElement('div');d.className='fitem';
+      d.innerHTML=`<img src="${e.target.result}" alt=""><button onclick="this.closest('.fitem').remove();calc()">remover</button>`;
+      grid.appendChild(d);calc();
+    };
+    r.readAsDataURL(f);
+  });
+}
+
+/* ── FINALIDADE / MODO ── */
+const MODOS={
+  venda:{hint:'Estudo de preço para anúncio e negociação da venda.',unidade:'R$/m²',kAnuncio:'Valor sugerido de anúncio',kFecha:'Valor provável de fechamento',kPiso:'Piso de negociação',lblUnit:'Valor do m² na região (R$)',lblPrazo:'Prazo estimado de venda',docSub:'definição de preço para venda',fator:'desconto usual entre o preço pedido e o preço fechado na região',hintM2:'Informe o valor de venda do m² praticado na região (ex.: pesquisa própria, FipeZap, boletim CRECI-SP).'},
+  locacao:{hint:'Estimativa de valor de locação a partir do m² de aluguel praticado na região.',unidade:'R$/m²/mês',kAnuncio:'Aluguel sugerido de anúncio',kFecha:'Aluguel provável de fechamento',kPiso:'Piso de negociação do aluguel',lblUnit:'Valor do m² de locação na região (R$/mês)',lblPrazo:'Prazo estimado de locação',docSub:'definição de valor de locação',fator:'desconto usual entre o aluguel pedido e o efetivamente contratado na região',hintM2:'Informe o valor de locação do m² praticado na região (R$/mês).'},
+  permuta:{hint:'Referência de valor para permuta entre particulares — não substitui laudo em dação ou operação bancária.',unidade:'R$/m²',kAnuncio:'Valor de referência do imóvel',kFecha:'Valor provável em negociação',kPiso:'Piso de negociação',lblUnit:'Valor do m² na região (R$)',lblPrazo:'Prazo estimado de negociação',docSub:'referência de valor para permuta entre particulares',fator:'ajuste entre preço anunciado e valor efetivamente praticado',hintM2:'Informe o valor de venda do m² praticado na região.'},
+  patrimonio:{hint:'Uso interno do proprietário. Para inventário, partilha, IRPF ou contabilidade, emita PTAM.',unidade:'R$/m²',kAnuncio:'Valor de mercado estimado',kFecha:'Valor provável de realização',kPiso:'Limite inferior da faixa',lblUnit:'Valor do m² na região (R$)',lblPrazo:'Prazo estimado de realização',docSub:'atualização de valor patrimonial para uso interno do proprietário',fator:'ajuste entre preço anunciado e valor efetivamente praticado',hintM2:'Informe o valor de venda do m² praticado na região.'},
+  referencia:{hint:'Consulta informal do proprietário sobre o patamar de mercado do imóvel.',unidade:'R$/m²',kAnuncio:'Valor de mercado estimado',kFecha:'Valor provável em negociação',kPiso:'Limite inferior da faixa',lblUnit:'Valor do m² na região (R$)',lblPrazo:'Prazo estimado de negociação',docSub:'referência de mercado a pedido do proprietário',fator:'ajuste entre preço anunciado e valor efetivamente praticado',hintM2:'Informe o valor de venda do m² praticado na região.'}
+};
+function modo(){return MODOS[v('finalidade')]||MODOS.venda;}
+function aplicarModo(){
+  const m=modo();
+  $('hintFinalidade').textContent=m.hint;
+  $('hintM2').textContent=m.hintM2;
+  $('kAnuncio').textContent=m.kAnuncio;
+  $('kFecha').textContent=m.kFecha;
+  $('kPiso').textContent=m.kPiso;
+  $('kUnit').textContent=m.unidade+' adotado';
+  $('lblUnit').textContent=m.lblUnit;
+  $('lblPrazo').textContent=m.lblPrazo;
+  $('hintFator').textContent=m.fator;
+  calc();salvar();
+}
+
+/* ── CÁLCULO ── */
+function calc(){
+  const area=parseFloat(v('area'))||0;
+  const unitRegiao=parseFloat(v('unitRegiao'))||0;
+  const fator=(parseFloat(v('fatorOferta'))||0)/100;
+  const m=modo();
+
+  const unitFecha=unitRegiao*(1-fator);
+  const anuncio=unitRegiao*area;
+  const fecha=unitFecha*area;
+  const piso=fecha*0.95;
+  const isLoc=v('finalidade')==='locacao';
+
+  $('rUnit').textContent=unitRegiao?brl2(unitRegiao)+(isLoc?'/m²/mês':'/m²'):'—';
+  $('rAnuncio').textContent=brl(anuncio)+ (anuncio>0&&isLoc?' /mês':'');
+  $('rFecha').textContent=brl(fecha)+ (fecha>0&&isLoc?' /mês':'');
+  $('rPiso').textContent=brl(piso)+ (piso>0&&isLoc?' /mês':'');
+  $('rAnuncioSub').textContent = area&&unitRegiao ? `${area.toLocaleString('pt-BR')} m² × ${brl2(unitRegiao)}${isLoc?'/mês':''} · ${v('prazo')}` : 'preencha área e valor do m²';
+
+  montarDoc({area,unitRegiao,unitFecha,anuncio,fecha,piso,fator,m,isLoc});
+}
+
+/* ── DOCUMENTO ── */
+function montarDoc(d){
+  const fotosImovel=Array.from(document.querySelectorAll('#fotosImovel img')).map(i=>i.src);
+  const m=d.m;
+
+  $('doc').innerHTML=`
+${logoTag()}
+<h1>OPINIÃO DE VALOR MERCADOLÓGICO</h1>
+<div class="sub">Documento nº ${v('num')||'—'} · ${fmtBR(v('data'))} · finalidade: ${m.docSub}</div>
+<hr>
+
+<h3>1. Solicitante e finalidade</h3>
+<div class="dr"><span class="dk">Finalidade declarada:</span><span>${m.docSub}</span></div>
+<div class="dr"><span class="dk">Solicitante:</span><span>${v('cliente')||'—'}</span></div>
+<div class="dr"><span class="dk">Contato:</span><span>${v('cliente_tel')||'—'}</span></div>
+
+<h3>2. Imóvel objeto do estudo</h3>
+<div class="dr"><span class="dk">Endereço:</span><span>${v('endereco')||'—'}</span></div>
+<div class="dr"><span class="dk">Tipo:</span><span>${v('tipo')}</span></div>
+<div class="dr"><span class="dk">Área privativa/útil:</span><span>${v('area')?v('area')+' m²':'—'}${v('area_total')?' · área total: '+v('area_total')+' m²':''}</span></div>
+<div class="dr"><span class="dk">Dormitórios / vagas:</span><span>${v('dorm')||'—'} dorm. · ${v('vagas')||'—'} vaga(s)</span></div>
+<div class="dr"><span class="dk">Conservação:</span><span>${v('conserv')}</span></div>
+<div class="dr"><span class="dk">Encargos:</span><span>Condomínio ${v('condominio')?brl(parseFloat(v('condominio')))+'/mês':'—'} · IPTU ${v('iptu')?brl(parseFloat(v('iptu')))+'/ano':'—'}</span></div>
+<div class="dr"><span class="dk">Situação documental:</span><span>${v('docsit')}</span></div>
+${v('obs')?`<div class="dr"><span class="dk">Observações:</span><span>${v('obs')}</span></div>`:''}
+${fotosImovel.length?`<div class="docfotos">${fotosImovel.map(s=>`<img src="${s}" alt="">`).join('')}</div>`:''}
+
+<h3>3. Valor do m² da região</h3>
+<div class="dr"><span class="dk">Valor adotado:</span><span>${brl2(d.unitRegiao)}${d.isLoc?'/m²/mês':'/m²'}</span></div>
+<div class="dr"><span class="dk">Fonte da referência:</span><span>${v('fonteM2')||'—'}</span></div>
+<div class="dr"><span class="dk">Fator de negociação:</span><span>${(d.fator*100).toLocaleString('pt-BR')}% — ${m.fator}</span></div>
+
+<h3>4. Faixa de valor recomendada</h3>
+<div class="valorbox">
+  <div style="font-size:.7rem;color:#17506f;text-transform:uppercase;letter-spacing:.06em">${m.kAnuncio}</div>
+  <div class="vb">${brl(d.anuncio)}${d.isLoc?' <span style="font-size:.9rem">/mês</span>':''}</div>
+  <div class="vs">${m.kFecha}: ${brl(d.fecha)}${d.isLoc?'/mês':''} &nbsp;·&nbsp; ${m.kPiso}: ${brl(d.piso)}${d.isLoc?'/mês':''}</div>
+</div>
+<div class="dr"><span class="dk">${m.lblPrazo}:</span><span>${v('prazo')}</span></div>
+<div class="dr"><span class="dk">Base de cálculo:</span><span>${brl2(d.unitRegiao)}${d.isLoc?'/m²/mês':'/m²'} × ${v('area')||'—'} m²</span></div>
+
+<div class="legal">
+<strong>Natureza e limites deste documento.</strong> Esta Opinião de Valor Mercadológico é um estudo de mercado emitido no exercício da atribuição de opinar sobre a comercialização de imóveis (Lei 6.530/78, art. 3º), destinado exclusivamente à orientação do solicitante quanto à finalidade declarada no item 1 (${m.docSub}) e à estratégia de negociação. O valor do m² foi adotado por referência de mercado da região, sem levantamento individualizado de amostras comparativas.
+<strong>Não constitui Parecer Técnico de Avaliação Mercadológica (PTAM) nem laudo de avaliação</strong> na forma da ABNT NBR 14653 e da Resolução COFECI 1.066/2007, não tendo validade para financiamento imobiliário, garantia bancária, inventário, partilha, dação em pagamento, processo judicial, fins tributários, contábeis ou societários. Para essas finalidades deve ser contratado o PTAM completo, com vistoria técnica, amostra homogeneizada e grau de fundamentação declarado. Os valores refletem as condições de mercado na data de emissão, têm validade referencial de 90 dias e não vinculam o valor final da transação, que decorre da negociação entre as partes.
+</div>
+
+<div class="assin">
+  <div class="ln"></div>
+  <strong>${PROF.nome}</strong><br>
+  Corretor de Imóveis · ${PROF.creci} · ${PROF.cnai}<br>
+  ${PROF.tel} · ${PROF.site}
+</div>
+
+<div class="rodape">FCosta Corretor e Avaliador de Imóveis · ${PROF.creci} · Documento nº ${v('num')||'—'} · emitido em ${fmtBR(v('data'))}</div>`;
+}
+
+/* ── AÇÕES ── */
+function imprimir(){calc();setTimeout(()=>window.print(),250);}
+function copiarWhats(){
+  const m=modo();
+  const txt=`*OPINIÃO DE VALOR MERCADOLÓGICO*
+${v('endereco')||'—'}
+${v('tipo')} · ${v('area')||'—'} m² · ${v('dorm')||'—'} dorm · ${v('vagas')||'—'} vaga(s)
+
+Valor do m² da região: ${$('rUnit').textContent}${v('fonteM2')?' (fonte: '+v('fonteM2')+')':''}
+
+*${m.kAnuncio}: ${$('rAnuncio').textContent}*
+${m.kFecha}: ${$('rFecha').textContent}
+${m.kPiso}: ${$('rPiso').textContent}
+${m.lblPrazo}: ${v('prazo')}
+
+Finalidade: ${m.docSub}. Estudo de mercado — não é PTAM/laudo de avaliação, não tem validade para banco, garantia, inventário ou processo judicial.
+
+${PROF.nome} — ${PROF.creci} · ${PROF.cnai}
+${PROF.tel} · ${PROF.site}`;
+  navigator.clipboard.writeText(txt).then(()=>toast('✅ Resumo copiado — cole no WhatsApp.')).catch(()=>toast('⚠️ Não foi possível copiar.'));
+}
+function novo(){
+  if(!confirm('Limpar todos os campos desta opinião de valor?'))return;
+  document.querySelectorAll('input[type="text"],input[type="number"],input[type="date"],textarea').forEach(i=>{if(i.id!=='fatorOferta')i.value='';});
+  $('fatorOferta').value=8;$('fotosImovel').innerHTML='';
+  $('data').value=new Date().toISOString().slice(0,10);
+  aplicarModo();salvar();
+}
+
+/* ── PERSISTÊNCIA (texto; fotos ficam só na sessão) ── */
+function salvar(){
+  try{
+    const d={};
+    document.querySelectorAll('input[type="text"],input[type="number"],input[type="date"],select,textarea').forEach(e=>{if(e.id)d[e.id]=e.value;});
+    localStorage.setItem(KEY,JSON.stringify(d));
+  }catch(e){}
+}
+function carregar(){
+  try{
+    const raw=localStorage.getItem(KEY);if(!raw)return false;
+    const d=JSON.parse(raw);
+    Object.keys(d).forEach(k=>{const e=$(k);if(e)e.value=d[k];});
+    return true;
+  }catch(e){return false;}
+}
+
+aplicarLogo();
+if(!carregar()){
+  $('data').value=new Date().toISOString().slice(0,10);
+}
+aplicarModo();
+document.addEventListener('input',()=>{calc();salvar();});
+document.addEventListener('change',()=>{calc();salvar();});
+calc();
+</script>
+</body>
+</html>
